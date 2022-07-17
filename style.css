@@ -17,7 +17,7 @@ body {
     font-size: 12rem;
     color: white;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 25px;
     text-align: center;
     z-index: -1;
   }
@@ -25,8 +25,8 @@ body {
   .seqButtonPanel {
     position: absolute;
     width: 700px;
-    height: 400px;
-    top: 50%;
+    height: 450px;
+    top: 52%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -37,7 +37,7 @@ body {
 }
 
   #tvJpg {
-    width: 150px;
+    width: 130px;
     height: auto;
     float: right;
   }
@@ -63,18 +63,13 @@ body {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 65%;
+    top: 53%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}
-
-
-#buttonRow1 {
-    top: 55%;
 }
 
 .seqButton {
@@ -110,4 +105,16 @@ body {
     margin-right: -15px;
     background-color: var(--dimCyan);
 
+}
+
+#buttonRow1 {
+    top: 43%;
+}
+
+#buttonRow3 {
+    top: 63%;
+}
+
+#buttonRow4 {
+    top: 73%;
 }

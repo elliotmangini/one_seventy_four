@@ -1,7 +1,7 @@
 // Initialize Parameters!
 
 let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
-let kickPattern = [0, 10, 16, 26, 32, 42, 48, 58];
+let kickPattern = [0, 16, 32, 48, 58];
 
 let currentKick = './Big_Sister_Kick_HTJ_01.wav'
 let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
@@ -16,7 +16,7 @@ let startIntervalClock;
 let clockPosition = 0;
 let bpm = 174;
 let milliseconds = bpm / 2;
-const sequenceLength = 31;
+const sequenceLength = 63;
 
 
 function play() {
