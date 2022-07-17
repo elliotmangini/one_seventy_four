@@ -3,7 +3,7 @@
 let clockPosition = 0;
 let bpm = 174;
 let milliseconds = bpm / 2;
-const sequenceLength = 63;
+const sequenceLength = 7;
 
 setInterval(tickingFunctions, milliseconds);
 setInterval(incrementClock, milliseconds);
@@ -27,7 +27,7 @@ setInterval(incrementClock, milliseconds);
 
 function incrementClock() {
     console.log(clockPosition)
-    if (clockPosition < 63) {
+    if (clockPosition < sequenceLength) {
         clockPosition += 1;
     } else {
         clockPosition = 0;
