@@ -35,14 +35,25 @@ function metronomeBlink() {
 
 function playKick() {
     if (kickPattern.includes(clockPosition)) {
-
+        myPlay(currentKick);
     }
 }
 
 
-// Musical Memory!
+// Pattern Memory!
 
-let kickPattern = [0, 5, 9, 13, 17];
+let kickPattern = [0, 4, 8, 12, 16];
+
+function myPlay(currentSoundAsString){
+    var audio = new Audio(currentSoundAsString);
+    audio.play();
+}
+
+// Sample Loading
+
+let currentKick = './Big_Sister_Kick_HTJ_01.wav'
+
+// let currentKick = document.getElementById('Kick1');
 
 
 
