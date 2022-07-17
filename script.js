@@ -1,4 +1,14 @@
-// const h2 = document.createElement("h2");
-// h2.textContent = "This content added by JavaScript";
+// Master Clock!
 
-// document.querySelector("body").appendChild(h2);
+let clockPosition = '1';
+
+setInterval(incrementClock, 86);
+
+function incrementClock() {
+    if (clockPosition < 64) {
+        clockPosition += 1;
+    } else {
+        clockPosition = 1;
+    }
+    // console.log(clockPosition)
+}
