@@ -1,27 +1,36 @@
-// Master Clock Brain!
+// Initialize Parameters!
+
+let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
+let kickPattern = [0, 10, 16, 26, 32, 42, 48, 58];
+
+let currentKick = './Big_Sister_Kick_HTJ_01.wav'
+let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
+
+// declaring the important function names so that pause can access them.
+let startIntervalFunctions;
+let startIntervalClock;
+
+
+// Master Clock Brain Memories!
 
 let clockPosition = 0;
 let bpm = 174;
 let milliseconds = bpm / 2;
 const sequenceLength = 7;
 
-setInterval(tickingFunctions, milliseconds);
-setInterval(incrementClock, milliseconds);
 
-// var startIntervalFunctions = setInterval(tickingFunctions, milliseconds);
-// var startIntervalClock = setInterval(incrementClock, milliseconds);
+function play() {
+    startIntervalFunctions = setInterval(tickingFunctions, milliseconds);
+    startIntervalClock = setInterval(incrementClock, milliseconds);
+}
 
-// function play() {
-//     startIntervalFunctions();
-//     startIntervalClock(;)
-// }
+function pause() {
+    clearInterval(startIntervalFunctions);
+    clearInterval(startIntervalClock);
+}
 
-// function pause() {
-//     clearInterval(startIntervalFunctions);
-//     clearInterval(startIntervalClock);
-// }
-
-// play();
+play();
+pause();
 
 
 
@@ -86,24 +95,12 @@ function illuminateButtons() {
 
 
 
-
-
-
-
-// Pattern Memory!
-
-let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
-let kickPattern = [0, 10, 16, 26, 32, 42, 48, 58];
-
 function myPlay(currentSoundAsString){
     var audio = new Audio(currentSoundAsString);
     audio.play();
 }
 
-// Sample Loading
 
-let currentKick = './Big_Sister_Kick_HTJ_01.wav'
-let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
 
 // let currentKick = document.getElementById('Kick1');
 
