@@ -25,7 +25,7 @@ body {
   .seqButtonPanel {
     position: absolute;
     width: 700px;
-    height: 450px;
+    height: 440px;
     top: 52%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
@@ -63,7 +63,7 @@ body {
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 53%;
+    top: 52%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -108,13 +108,13 @@ body {
 }
 
 #buttonRow1 {
-    top: 43%;
+    top: 42%;
 }
 
 #buttonRow3 {
-    top: 63%;
+    top: 62%;
 }
 
 #buttonRow4 {
-    top: 73%;
+    top: 72%;
 }
