@@ -10,22 +10,38 @@
 
     <div class="seqButtonPanel">
         <div class="metronomeLight" id="metronomeLight"></div>
+        <!-- <div class="television"></div>
+        <div class="mainDisplay"></div> -->
     </div>
 
-    <div class="distributeHorizontal">
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
-        <div class="seqButton"></div>
+    <!-- <div class="snareSelector"></div> -->
+    <div class="distributeHorizontal" id="buttonRow1">
+        <div class="seqButton" id="s0"></div>
+        <div class="seqButton" id="s1"></div>
+        <div class="seqButton" id="s2"></div>
+        <div class="seqButton" id="s3"></div>
+        <div class="seqButton" id="s4"></div>
+        <div class="seqButton" id="s5"></div>
+        <div class="seqButton" id="s6"></div>
+        <div class="seqButton" id="s7"></div>
+    </div>
+
+    <!-- <div class="kickSelector"></div> -->
+    <div class="distributeHorizontal" id="buttonRow2">
+        <div class="seqButton" id="k0"></div>
+        <div class="seqButton" id="k1"></div>
+        <div class="seqButton" id="k2"></div>
+        <div class="seqButton" id="k3"></div>
+        <div class="seqButton" id="k4"></div>
+        <div class="seqButton" id="k5"></div>
+        <div class="seqButton" id="k6"></div>
+        <div class="seqButton" id="k7"></div>
     </div>
 
 
     <audio id="soundBank" loop="false" volume ="50">
         <source src="Big_Sister_Kick_HTJ_01.wav" id="currentKick" type="audio/wav">
+        <source src="Big_Sister_Snare_Rim_Geef_01.wav" id="currentSnare" type="audio/wav">
       </audio>
 
 
