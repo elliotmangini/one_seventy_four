@@ -16,7 +16,7 @@ let startIntervalClock;
 let clockPosition = 0;
 let bpm = 174;
 let milliseconds = bpm / 2;
-const sequenceLength = 7;
+const sequenceLength = 31;
 
 
 function play() {
@@ -30,7 +30,7 @@ function pause() {
 }
 
 play();
-pause();
+// pause();
 
 
 

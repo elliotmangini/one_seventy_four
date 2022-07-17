@@ -36,8 +36,10 @@ body {
     background-color: #000000;
 }
 
-  .television {
-
+  #tvJpg {
+    width: 150px;
+    height: auto;
+    float: right;
   }
 
 
@@ -92,6 +94,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 14px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
@@ -101,9 +104,9 @@ body {
 
 .sequenceSixteenths {
     /* border: 1px solid white; */
-    width: 8px;
-    height: 8px;
-    margin: 10px;
+    width: 9px;
+    height: 9px;
+    margin: 7px;
     margin-right: -15px;
     background-color: var(--dimCyan);
 
