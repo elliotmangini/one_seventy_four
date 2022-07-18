@@ -32,8 +32,9 @@ function pause() {
     clearInterval(startIntervalClock);
 }
 
-// Automatic Play for use in development.
+// Manual Controls for use in development.
 
+illuminateButtons();
 play();
 // pause();
 
@@ -88,10 +89,14 @@ function illuminateButtons() {
 
         if (snarePattern.includes(i)) {
             document.getElementById(currentSnareId).style.background = 'var(--litCyan)';
+        } else if (!snarePattern.includes(i)) {
+            document.getElementById(currentSnareId).style.background = 'var(--dimCyan)';
         }
 
         if (kickPattern.includes(i)) {
             document.getElementById(currentKickId).style.background = 'var(--litCyan)';
+        } else if (!kickPattern.includes(i)) {
+            document.getElementById(currentKickId).style.background = 'var(--dimCyan)'
         }
 
     }
@@ -118,19 +123,21 @@ function myPlay(currentSoundAsString){
 
 // define a function that updates the pattern array
 
+
 function updatePattern(patternArray, stepId) {
-    console.log(patternArray);
-    console.log(stepId);
+    console.log('pattern before update: ' + patternArray);
+    console.log('stepId is' + stepId);
     // if the stepNumber is in the pattern, do something
     if (patternArray.includes(parseInt(stepId))) {
         console.log('i found an array item to delete');
         // delete the step value from the array
-        let momentaryIndex = patternArray.indexOf(stepId);
+        let momentaryIndex = patternArray.indexOf(parseInt(stepId));
         patternArray.splice(momentaryIndex, 1);
     } else {
         // add the step to the array
         patternArray.push(parseInt(stepId));
     }
+    console.log('pattern after update: ' + patternArray);
 }
 
 // add lots of event listeners???
@@ -139,8 +146,24 @@ function updatePattern(patternArray, stepId) {
 
 // i might need to start by "identifying" the element i want to attach the listener to
 
+// this is almost working, but it thinks im clicking on the big buttons when im clicking
+// the small ones
+
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
+
+// lets try logging those variables to see what they are (NodeLists?)
+
+// console.log(bigSequencerButtons);
+// console.log(smallSequencerButtons);
+
+// the following logs when a big button is clicked
+
+// bigSequencerButtons.forEach(bigButton => 
+//     bigButton.addEventListener('click', (e)=> {
+//         console.log('big button clicked');
+//     })
+// )
 
 [bigSequencerButtons, smallSequencerButtons].forEach(list => {
     list.forEach(button => {
@@ -149,13 +172,13 @@ const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
         let patternArray = [];
         if (button.id[0] === 's') {
             patternArray = snarePattern;
-        } else {
+        } else if (button.id[0] === 'k') {
             patternArray = kickPattern;
         }
         updatePattern(patternArray, stepId);
+        illuminateButtons();
 
         // console.log('buttons being updated?', button) sean helped me debug this
-        // and i love him.
         });
     })
  });
