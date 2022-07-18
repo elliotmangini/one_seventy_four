@@ -146,9 +146,6 @@ function updatePattern(patternArray, stepId) {
 
 // i might need to start by "identifying" the element i want to attach the listener to
 
-// this is almost working, but it thinks im clicking on the big buttons when im clicking
-// the small ones
-
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
 
@@ -165,31 +162,98 @@ const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
 //     })
 // )
 
-[bigSequencerButtons, smallSequencerButtons].forEach(list => {
-    list.forEach(button => {
+
+
+
+
+// this is almost working, but clicking on a 16th button, triggers click for big button.
+
+// [bigSequencerButtons, smallSequencerButtons].forEach(list => {
+//     list.forEach(button => {
+//         button.addEventListener('click', (e)=>{
+
+//             // if (smallSequencerButtons.includes(button)) {
+//             //     e.stopPropagation();
+//             // }
+
+//         let stepId = button.id.slice(1);
+//         let patternArray = [];
+
+//             if (button.id[0] === 's') {
+//                 patternArray = snarePattern;
+//             } else if (button.id[0] === 'k') {
+//                 patternArray = kickPattern;
+//             }
+
+//         updatePattern(patternArray, stepId);
+//         illuminateButtons();
+//         });
+//     })
+//  });
+
+
+
+
+// let's try it again using an event handler and only putting listeners on the big
+// buttons
+
+// this helper function grabs the element that is targeted
+
+// however this isnt working
+
+// function getEventTarget(e) {
+//     e = e || window.event;
+//     return e.target || e.srcElement;
+//   }
+
+// [bigSequencerButtons].forEach(bigButton => {
+//         bigButton.addEventListener('click', (e)=>{
+//         let button = getEventTarget(e);
+//         let stepId = button.id.slice(1);
+//         let patternArray = [];
+//         if (button.id[0] === 's') {
+//             patternArray = snarePattern;
+//         } else if (button.id[0] === 'k') {
+//             patternArray = kickPattern;
+//         }
+//         updatePattern(patternArray, stepId);
+//         illuminateButtons();
+
+//         // console.log('buttons being updated?', button) sean helped me debug this
+//         });
+//     });
+
+smallSequencerButtons.forEach(button => {
         button.addEventListener('click', (e)=>{
         let stepId = button.id.slice(1);
         let patternArray = [];
+
+            if (button.id[0] === 's') {
+                patternArray = snarePattern;
+            } else if (button.id[0] === 'k') {
+                patternArray = kickPattern;
+            }
+
+        updatePattern(patternArray, stepId);
+        illuminateButtons();
+        e.stopPropagation();
+
+        });
+});
+
+bigSequencerButtons.forEach(button => {
+    button.addEventListener('click', (e)=>{
+    let stepId = button.id.slice(1);
+    let patternArray = [];
+
         if (button.id[0] === 's') {
             patternArray = snarePattern;
         } else if (button.id[0] === 'k') {
             patternArray = kickPattern;
         }
-        updatePattern(patternArray, stepId);
-        illuminateButtons();
 
-        // console.log('buttons being updated?', button) sean helped me debug this
-        });
-    })
- });
+    updatePattern(patternArray, stepId);
+    illuminateButtons();
 
-// the listener has to say "okay ive been clicked! im running my shit now"
-// that listener must call the update pattern function and give it
-// the right arguments
-
-// element.addEventListener('click', updatePattern(PROVIDETHERIGHTARGUMENTS));
-
-// document.getElementsByClassName('seqButton')[0]
-//         .addEventListener('click', function (event) {
-//             // do something
-//         });
+    });
+});
