@@ -119,9 +119,11 @@ function myPlay(currentSoundAsString){
 // define a function that updates the pattern array
 
 function updatePattern(patternArray, stepId) {
-    console.log(patternArray)
+    console.log(patternArray);
+    console.log(stepId);
     // if the stepNumber is in the pattern, do something
-    if (patternArray.includes(stepId)) {
+    if (patternArray.includes(parseInt(stepId))) {
+        console.log('i found an array item to delete');
         // delete the step value from the array
         let momentaryIndex = patternArray.indexOf(stepId);
         patternArray.splice(momentaryIndex, 1);
@@ -152,7 +154,8 @@ const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
         }
         updatePattern(patternArray, stepId);
 
-        console.log('buttons being updated?', button)
+        // console.log('buttons being updated?', button) sean helped me debug this
+        // and i love him.
         });
     })
  });
