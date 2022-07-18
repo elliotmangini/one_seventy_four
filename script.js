@@ -9,6 +9,15 @@ let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56,
 let currentKick = './Big_Sister_Kick_HTJ_01.wav'
 let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
 
+letSnareIndex = 0;
+letKickIndex = 0;
+
+let kickArray = '';
+let snareArray = [
+    './Big_Sister_Snare_Rim_Geef_01.wav',
+    './Big_Sister_Snare_Clap_Squid_05.wav',
+]
+
 let hotSample1 = './Wheel_Up_Signal.wav'
 let hotSample2 = './lickshot_beep.wav'
 let hotSample3 = './lickshot_laser.wav'
@@ -18,7 +27,7 @@ let hotSample4 = './lickshot_rewind.wav'
 let startIntervalFunctions;
 let startIntervalClock;
 
-// Master Clock Parameters!
+// Master Clock Default Parameters!
 
 let clockPosition = 0;
 let bpm = 174;
@@ -38,16 +47,11 @@ function pause() {
     let clockPosition = 0;
 }
 
-// Manual Controls for use in development.
-
 illuminateButtons();
-// play();
-// pause();
 
 // Main Time-Based Logic Functions.
 
 function incrementClock() {
-    // console.log(clockPosition)
     if (clockPosition < sequenceLength) {
         clockPosition += 1;
     } else {
@@ -109,14 +113,14 @@ function illuminateButtons() {
     }
 }
 
-// Utility Functions (Allows JS to dynamically recall audio paths and play them.)
+// Utility Function (Allows JS to dynamically recall audio paths and play them.)
 
 function myPlay(currentSoundAsString){
     var audio = new Audio(currentSoundAsString);
     audio.play();
 }
 
-// Function that updates the pattern arrays.
+// Functions that update the "memory" arrays.
 
 
 function updatePattern(patternArray, stepId) {
@@ -132,10 +136,22 @@ function updatePattern(patternArray, stepId) {
         // add the step to the array
         patternArray.push(parseInt(stepId));
     }
-    console.log('pattern after update: ' + patternArray);
+    // console.log('pattern after update: ' + patternArray);
 }
 
-// Button Click Events
+function changeSnare() {
+    if (snareArray.indexOf(currentSnare) < snareArray.length - 1) {
+        let momentarySnareIndex = snareArray.indexOf(currentSnare);
+        let newSnareIndex = (momentarySnareIndex + 1);
+        console.log(newSnareIndex);
+        currentSnare = snareArray[newSnareIndex];
+    } else {
+        currentSnare = snareArray[0];
+        console.log('snare rotation restarting');
+    }
+}
+
+// Main Drum Sequencer Click Events
 
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
@@ -206,10 +222,14 @@ samplerElement3.addEventListener("click", e => {
     myPlay(hotSample3);
 })
 
+// special rewinder button
+
 const samplerElement4 = document.getElementById('sampler4')
 samplerElement4.addEventListener("click", e => {
     myPlay(hotSample4);
-    playPause();
+    if (playState === true) {
+        playPause();
+    }
 })
 
 // play pause button + spacebar
@@ -237,3 +257,13 @@ document.addEventListener('keyup', event => {
         playPause();
     }
   })
+
+
+  
+  
+  // soundbank selectors
+
+  const snareBankButton = document.getElementById('snareBank')
+  snareBankButton.addEventListener("click", e => {
+    changeSnare();
+})

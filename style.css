@@ -163,3 +163,31 @@ body {
   top: 31%;
   left: 2%;
 }
+
+#sampler4 {
+  background-color: rgb(37, 79, 37);
+}
+
+#snareBank {
+  width: 35px;
+  height: 35px;
+  margin: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(190, 91, 139);
+  top: 38%;
+  left: 4%;
+}
+
+#kickBank {
+  width: 35px;
+  height: 35px;
+  margin: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(190, 91, 139);
+  top: 48%;
+  left: 4%;
+}
