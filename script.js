@@ -10,9 +10,9 @@ let currentKick = './Big_Sister_Kick_HTJ_01.wav'
 let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
 
 let hotSample1 = './Wheel_Up_Signal.wav'
-let hotSample2 = './Wheel_Up_Signal.wav'
-let hotSample3 = './Wheel_Up_Signal.wav'
-let hotSample4 = './Wheel_Up_Signal.wav'
+let hotSample2 = './lickshot_beep.wav'
+let hotSample3 = './lickshot_laser.wav'
+let hotSample4 = './lickshot_rewind.wav'
 
 // Pseudo-declaration of functions to handle scope well.
 let startIntervalFunctions;
@@ -28,7 +28,6 @@ const sequenceLength = 63;
 // Master Control Functions
 
 function play() {
-    // let clockPosition = 0;
     startIntervalFunctions = setInterval(tickingFunctions, milliseconds);
     startIntervalClock = setInterval(incrementClock, milliseconds);
 }
@@ -36,6 +35,7 @@ function play() {
 function pause() {
     clearInterval(startIntervalFunctions);
     clearInterval(startIntervalClock);
+    let clockPosition = 0;
 }
 
 // Manual Controls for use in development.
@@ -209,6 +209,7 @@ samplerElement3.addEventListener("click", e => {
 const samplerElement4 = document.getElementById('sampler4')
 samplerElement4.addEventListener("click", e => {
     myPlay(hotSample4);
+    playPause();
 })
 
 // play pause button + spacebar
