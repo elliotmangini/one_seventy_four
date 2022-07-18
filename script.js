@@ -1,5 +1,7 @@
 // Audio + Pattern Defaults
 
+let playState = false;
+
 let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
 let kickPattern = [0, 16, 32, 48, 58];
 let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
@@ -26,6 +28,7 @@ const sequenceLength = 63;
 // Master Control Functions
 
 function play() {
+    // let clockPosition = 0;
     startIntervalFunctions = setInterval(tickingFunctions, milliseconds);
     startIntervalClock = setInterval(incrementClock, milliseconds);
 }
@@ -38,7 +41,7 @@ function pause() {
 // Manual Controls for use in development.
 
 illuminateButtons();
-play();
+// play();
 // pause();
 
 // Main Time-Based Logic Functions.
@@ -189,25 +192,47 @@ function stepLightBlink() {
 // hot sampler playback
 
 const samplerElement1 = document.getElementById('sampler1')
-console.log(samplerElement1)
 samplerElement1.addEventListener("click", e => {
     myPlay(hotSample1);
 })
 
 const samplerElement2 = document.getElementById('sampler2')
-console.log(samplerElement2)
 samplerElement2.addEventListener("click", e => {
     myPlay(hotSample2);
 })
 
 const samplerElement3 = document.getElementById('sampler3')
-console.log(samplerElement3)
 samplerElement3.addEventListener("click", e => {
     myPlay(hotSample3);
 })
 
 const samplerElement4 = document.getElementById('sampler4')
-console.log(samplerElement4)
 samplerElement4.addEventListener("click", e => {
     myPlay(hotSample4);
 })
+
+// play pause button + spacebar
+
+function playPause() {
+    if (playState === false) {
+        document.getElementById('playPause').style.background = 'var(--yellow)';
+        play();
+        playState = true;
+    } else if (playState === true) {
+        document.getElementById('playPause').style.background = 'var(--white)';
+        pause();
+        playState = false;
+    }
+}
+
+const playPauseElement = document.getElementById('playPause')
+playPauseElement.addEventListener("click", e => {
+    console.log('checking playstate');
+    playPause();
+})
+
+document.addEventListener('keyup', event => {
+    if (event.code === 'Space') {
+        playPause();
+    }
+  })

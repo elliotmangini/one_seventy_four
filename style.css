@@ -5,6 +5,8 @@
     --litRed: #cc1010;
     --dimCyan: rgb(60, 75, 84);
     --litCyan: #1bfbff;
+    --yellow: rgb(221, 245, 102);
+    --white: white;
 }
 
 
@@ -147,4 +149,16 @@ body {
 #hotSampler {
   top: 30%;
   left: 45%;
+}
+
+#playPause {
+  width: 40px;
+  height: 40px;
+  margin: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+  top: 31%;
+  left: 2%;
 }
