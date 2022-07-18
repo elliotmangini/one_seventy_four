@@ -1,6 +1,3 @@
-// !!! Initializing Parameters !!!
-
-
 // Audio + Pattern Defaults
 
 let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
@@ -10,6 +7,11 @@ let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56,
 let currentKick = './Big_Sister_Kick_HTJ_01.wav'
 let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
 
+let hotSample1 = './Wheel_Up_Signal.wav'
+let hotSample2 = './Wheel_Up_Signal.wav'
+let hotSample3 = './Wheel_Up_Signal.wav'
+let hotSample4 = './Wheel_Up_Signal.wav'
+
 // Pseudo-declaration of functions to handle scope well.
 let startIntervalFunctions;
 let startIntervalClock;
@@ -18,7 +20,7 @@ let startIntervalClock;
 
 let clockPosition = 0;
 let bpm = 174;
-let milliseconds = bpm / 2;
+let milliseconds = (60000 / bpm / 4);
 const sequenceLength = 63;
 
 // Master Control Functions
@@ -63,7 +65,7 @@ function tickingFunctions() {
 // Child Functions (Called Over & Over By The Clock)!
 
 function metronomeBlink() {
-    if (Number.isInteger(clockPosition / 4)) {
+    if (Number.isInteger(clockPosition / 8)) {
         document.getElementById('metronomeLight').style.background = 'var(--litRed)';
     } else {
        document.getElementById('metronomeLight').style.background = 'var(--dimRed)';
@@ -85,7 +87,7 @@ function playSnare() {
 
 function illuminateButtons() {
 
-    for (let i = 0; i < sequenceLength; i++) {
+    for (let i = 0; i <= sequenceLength; i++) {
         let currentSnareId = `s${i}`;
         let currentKickId = `k${i}`;
 
@@ -111,27 +113,15 @@ function myPlay(currentSoundAsString){
     audio.play();
 }
 
-
-// Clicking Sequencer Buttons To Update the Pattern Arrays.
-
-// here's what I need this part to do:
-// javascript needs to know when the user clicks on a div
-// i think i do this by "appending" an event listener to every "button-div".
-// when the div is clicked, the update pattern function is called with relevant arguments,
-// the updatePattern function checks if the button's id (pattern number) is
-// currently in the pattern array or not,
-// then it adds or removes the number accordingly.
-// everything else should happen automatically once the pattern array is updated.
-
-// define a function that updates the pattern array
+// Function that updates the pattern arrays.
 
 
 function updatePattern(patternArray, stepId) {
-    console.log('pattern before update: ' + patternArray);
-    console.log('stepId is' + stepId);
+    // console.log('pattern before update: ' + patternArray);
+    // console.log('stepId is' + stepId);
     // if the stepNumber is in the pattern, do something
     if (patternArray.includes(parseInt(stepId))) {
-        console.log('i found an array item to delete');
+        // console.log('i found an array item to delete');
         // delete the step value from the array
         let momentaryIndex = patternArray.indexOf(parseInt(stepId));
         patternArray.splice(momentaryIndex, 1);
@@ -142,91 +132,15 @@ function updatePattern(patternArray, stepId) {
     console.log('pattern after update: ' + patternArray);
 }
 
-// add lots of event listeners???
-// a template literal could help convert information about the grabbed element to the
-// updatePattern function
-
-// i might need to start by "identifying" the element i want to attach the listener to
+// Button Click Events
 
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
 
-// lets try logging those variables to see what they are (NodeLists?)
-
-// console.log(bigSequencerButtons);
-// console.log(smallSequencerButtons);
-
-// the following logs when a big button is clicked
-
-// bigSequencerButtons.forEach(bigButton => 
-//     bigButton.addEventListener('click', (e)=> {
-//         console.log('big button clicked');
-//     })
-// )
-
-
-
-
-
-// this is almost working, but clicking on a 16th button, triggers click for big button.
-
-// [bigSequencerButtons, smallSequencerButtons].forEach(list => {
-//     list.forEach(button => {
-//         button.addEventListener('click', (e)=>{
-
-//             // if (smallSequencerButtons.includes(button)) {
-//             //     e.stopPropagation();
-//             // }
-
-//         let stepId = button.id.slice(1);
-//         let patternArray = [];
-
-//             if (button.id[0] === 's') {
-//                 patternArray = snarePattern;
-//             } else if (button.id[0] === 'k') {
-//                 patternArray = kickPattern;
-//             }
-
-//         updatePattern(patternArray, stepId);
-//         illuminateButtons();
-//         });
-//     })
-//  });
-
-
-
-
-// let's try it again using an event handler and only putting listeners on the big
-// buttons
-
-// this helper function grabs the element that is targeted
-
-// however this isnt working
-
-// function getEventTarget(e) {
-//     e = e || window.event;
-//     return e.target || e.srcElement;
-//   }
-
-// [bigSequencerButtons].forEach(bigButton => {
-//         bigButton.addEventListener('click', (e)=>{
-//         let button = getEventTarget(e);
-//         let stepId = button.id.slice(1);
-//         let patternArray = [];
-//         if (button.id[0] === 's') {
-//             patternArray = snarePattern;
-//         } else if (button.id[0] === 'k') {
-//             patternArray = kickPattern;
-//         }
-//         updatePattern(patternArray, stepId);
-//         illuminateButtons();
-
-//         // console.log('buttons being updated?', button) sean helped me debug this
-//         });
-//     });
-
 smallSequencerButtons.forEach(button => {
         button.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            console.log('button clicked')
         let stepId = button.id.slice(1);
         let patternArray = [];
 
@@ -238,13 +152,13 @@ smallSequencerButtons.forEach(button => {
 
         updatePattern(patternArray, stepId);
         illuminateButtons();
-        e.stopPropagation();
 
         });
 });
 
 bigSequencerButtons.forEach(button => {
     button.addEventListener('click', (e)=>{
+    console.log('button clicked')
     let stepId = button.id.slice(1);
     let patternArray = [];
 
@@ -261,10 +175,39 @@ bigSequencerButtons.forEach(button => {
 });
 
 
+// Changes colors of step sequencer lights.
+
 function stepLightBlink() {
     if (stepLightPattern.includes(clockPosition)) {
         document.getElementById('l' + `${clockPosition}`).style.background = 'var(--litRed)';
-    } else {
+    } else if (stepLightPattern.includes(clockPosition - 1)) {
         document.getElementById('l' + `${clockPosition - 1}`).style.background = 'var(--dimRed)';
     }
 }
+
+
+// hot sampler playback
+
+const samplerElement1 = document.getElementById('sampler1')
+console.log(samplerElement1)
+samplerElement1.addEventListener("click", e => {
+    myPlay(hotSample1);
+})
+
+const samplerElement2 = document.getElementById('sampler2')
+console.log(samplerElement2)
+samplerElement2.addEventListener("click", e => {
+    myPlay(hotSample2);
+})
+
+const samplerElement3 = document.getElementById('sampler3')
+console.log(samplerElement3)
+samplerElement3.addEventListener("click", e => {
+    myPlay(hotSample3);
+})
+
+const samplerElement4 = document.getElementById('sampler4')
+console.log(samplerElement4)
+samplerElement4.addEventListener("click", e => {
+    myPlay(hotSample4);
+})
