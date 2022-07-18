@@ -7,7 +7,8 @@
     --litCyan: #1bfbff;
     --yellow: rgb(221, 245, 102);
     --white: white;
-    --panel: rgb(26, 10, 30);
+    --panel1: rgb(26, 10, 30);
+    --panel2: rgb(47, 13, 13);
 }
 
 
@@ -20,7 +21,7 @@ body {
     font-size: 12rem;
     color: white;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 20px;
     text-align: center;
     z-index: -1;
   }
@@ -29,14 +30,14 @@ body {
     position: absolute;
     width: 700px;
     height: 440px;
-    top: 52%;
+    top: 51%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    background-color: var(--panel);
+    background: linear-gradient(var(--panel1), var(--panel2));
 }
 
   #tvJpg {
@@ -177,7 +178,7 @@ body {
   justify-content: flex-end;
   background-color: rgb(190, 91, 139);
   top: 38%;
-  left: 4%;
+  left: 3.5%;
 }
 
 #kickBank {
@@ -189,5 +190,11 @@ body {
   justify-content: flex-end;
   background-color: rgb(190, 91, 139);
   top: 48%;
-  left: 4%;
+  left: 3.5%;
+}
+
+#panel2 {
+  top: 115%;
+  color: white;
+  text-align: center;
 }

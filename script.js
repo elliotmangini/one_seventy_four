@@ -12,11 +12,14 @@ let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
 letSnareIndex = 0;
 letKickIndex = 0;
 
-let kickArray = '';
+let kickArray = [
+    './Big_Sister_Kick_HTJ_01.wav',
+    './Big_Sister_Kick_Godseye_01.wav',
+];
 let snareArray = [
     './Big_Sister_Snare_Rim_Geef_01.wav',
     './Big_Sister_Snare_Clap_Squid_05.wav',
-]
+];
 
 let hotSample1 = './Wheel_Up_Signal.wav'
 let hotSample2 = './lickshot_beep.wav'
@@ -39,12 +42,14 @@ const sequenceLength = 63;
 function play() {
     startIntervalFunctions = setInterval(tickingFunctions, milliseconds);
     startIntervalClock = setInterval(incrementClock, milliseconds);
+    console.log('Playback started.')
 }
 
 function pause() {
     clearInterval(startIntervalFunctions);
     clearInterval(startIntervalClock);
     let clockPosition = 0;
+    console.log('Playback paused.')
 }
 
 illuminateButtons();
@@ -140,14 +145,28 @@ function updatePattern(patternArray, stepId) {
 }
 
 function changeSnare() {
+    let momentarySnareIndex = snareArray.indexOf(currentSnare);
+    let newSnareIndex = (momentarySnareIndex + 1);
+    console.log(`changing snare to #${newSnareIndex}`);
+
     if (snareArray.indexOf(currentSnare) < snareArray.length - 1) {
-        let momentarySnareIndex = snareArray.indexOf(currentSnare);
-        let newSnareIndex = (momentarySnareIndex + 1);
-        console.log(newSnareIndex);
         currentSnare = snareArray[newSnareIndex];
     } else {
         currentSnare = snareArray[0];
-        console.log('snare rotation restarting');
+        // console.log('snare rotation restarting');
+    }
+}
+
+function changeKick() {
+    let momentaryKickIndex = kickArray.indexOf(currentKick);
+    let newKickIndex = (momentaryKickIndex + 1);
+    console.log(`changing kick to #${newKickIndex}`);
+
+    if (kickArray.indexOf(currentKick) < kickArray.length - 1) {
+        currentKick = kickArray[newKickIndex];
+    } else {
+        currentKick = kickArray[0];
+        // console.log('kick rotation restarting');
     }
 }
 
@@ -210,25 +229,34 @@ function stepLightBlink() {
 const samplerElement1 = document.getElementById('sampler1')
 samplerElement1.addEventListener("click", e => {
     myPlay(hotSample1);
+    console.log('Playing hot sample 1');
 })
 
 const samplerElement2 = document.getElementById('sampler2')
 samplerElement2.addEventListener("click", e => {
     myPlay(hotSample2);
+    console.log('Playing hot sample 2');
 })
 
 const samplerElement3 = document.getElementById('sampler3')
 samplerElement3.addEventListener("click", e => {
     myPlay(hotSample3);
+    console.log('Playing hot sample 3');
 })
 
 // special rewinder button
 
 const samplerElement4 = document.getElementById('sampler4')
 samplerElement4.addEventListener("click", e => {
-    myPlay(hotSample4);
+
+    if (playState === false) {
+        myPlay(hotSample4);
+        console.log('NOW IS NOT THE TIME FOR A WHEEL UP!');
+    }
     if (playState === true) {
+        myPlay(hotSample4);
         playPause();
+        console.log('REEEEWWIIINNNDDDD');
     }
 })
 
@@ -248,7 +276,7 @@ function playPause() {
 
 const playPauseElement = document.getElementById('playPause')
 playPauseElement.addEventListener("click", e => {
-    console.log('checking playstate');
+    // console.log('checking playstate');
     playPause();
 })
 
@@ -261,9 +289,16 @@ document.addEventListener('keyup', event => {
 
   
   
-  // soundbank selectors
+// soundbank selectors
 
-  const snareBankButton = document.getElementById('snareBank')
+const snareBankButton = document.getElementById('snareBank')
   snareBankButton.addEventListener("click", e => {
     changeSnare();
 })
+
+const kickBankButton = document.getElementById('kickBank')
+  kickBankButton.addEventListener("click", e => {
+    changeKick();
+})
+
+
