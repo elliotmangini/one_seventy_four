@@ -43,7 +43,6 @@ body {
   }
 
 
-
   .metronomeLight {
     position: absolute;
     width: 10px;
@@ -113,4 +112,24 @@ body {
 
 #buttonRow4 {
     top: 72%;
+}
+
+.stepLight {
+  width: 10px;
+  height: 10px;
+  margin: 30px;
+  border-radius: 5px;
+  background-color: var(--dimCyan);
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--dimRed);
+  top: 30%;
+}
+
+#stepLights1 {
+  top: 47%;
+}
+
+#stepLights2 {
+  top: 67%;
 }

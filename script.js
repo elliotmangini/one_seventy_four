@@ -5,6 +5,7 @@
 
 let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
 let kickPattern = [0, 16, 32, 48, 58];
+let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
 
 let currentKick = './Big_Sister_Kick_HTJ_01.wav'
 let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
@@ -52,6 +53,7 @@ function incrementClock() {
 
 function tickingFunctions() {
     metronomeBlink();
+    stepLightBlink();
     illuminateButtons();
     playKick();
     playSnare();
@@ -257,3 +259,12 @@ bigSequencerButtons.forEach(button => {
 
     });
 });
+
+
+function stepLightBlink() {
+    if (stepLightPattern.includes(clockPosition)) {
+        document.getElementById('l' + `${clockPosition}`).style.background = 'var(--litRed)';
+    } else {
+        document.getElementById('l' + `${clockPosition - 1}`).style.background = 'var(--dimRed)';
+    }
+}
