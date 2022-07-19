@@ -9,6 +9,7 @@
     --white: white;
     --panel1: rgb(26, 10, 30);
     --panel2: rgb(47, 13, 13);
+    --dimGreen: rgb(65, 104, 65);
 }
 
 
@@ -197,4 +198,50 @@ body {
   top: 115%;
   color: white;
   text-align: center;
+}
+
+.hatSeqButton {
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+  border-radius: 1px;
+  display: flex;
+  justify-content: left;
+  background-color: var(--dimGreen);
+  top: 30%;
+}
+
+.hatSeqSpacer {
+  width: 6px;
+}
+
+#hatsRow1 {
+  top: 37%;
+  left: 51%;
+}
+
+#hatsRow2 {
+  top: 77%;
+  left: 51%;
+}
+
+.ghostKickButton {
+  width: 22px;
+  height: 12px;
+  margin: 4px;
+  border-radius: 1px;
+  display: flex;
+  justify-content: left;
+  background-color: var(--dimGreen);
+  top: 30%;
+}
+
+.ghostKickSpacer {
+  width: 10.1px;
+}
+
+#ghostKickRow {
+  top: 77%;
+  left: 50.75%;
+  display: none;
 }

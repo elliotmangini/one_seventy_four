@@ -4,27 +4,39 @@ let playState = false;
 
 let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
 let kickPattern = [0, 16, 32, 48, 58];
+let hatPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
 let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
 
-let currentKick = './Big_Sister_Kick_HTJ_01.wav'
-let currentSnare = './Big_Sister_Snare_Rim_Geef_01.wav'
-
-letSnareIndex = 0;
-letKickIndex = 0;
-
 let kickArray = [
+    './Big_Sister_Kick_DarkTechno_02.wav',
     './Big_Sister_Kick_HTJ_01.wav',
     './Big_Sister_Kick_Godseye_01.wav',
 ];
+
 let snareArray = [
     './Big_Sister_Snare_Rim_Geef_01.wav',
     './Big_Sister_Snare_Clap_Squid_05.wav',
+    './Big_Sister_Snare_Clap_LaserClap_05.wav',
 ];
+
+let hatArray = [
+    './HiHat 9.wav',
+]
 
 let hotSample1 = './Wheel_Up_Signal.wav'
 let hotSample2 = './lickshot_beep.wav'
 let hotSample3 = './lickshot_laser.wav'
 let hotSample4 = './lickshot_rewind.wav'
+
+let snareIndex = 0;
+let kickIndex = 0;
+let hatIndex = 0;
+let currentKick = kickArray[kickIndex];
+let currentSnare = snareArray[snareIndex];
+let currentHat = hatArray[hatIndex];
+
+let currentGhostKick = './Big_Sister_Kick_2ClickGhost_01.wav';
+let currentGhostSnare = './Big_Sister_GSnare_GTech.wav';
 
 // Pseudo-declaration of functions to handle scope well.
 let startIntervalFunctions;
@@ -71,6 +83,7 @@ function tickingFunctions() {
     illuminateButtons();
     playKick();
     playSnare();
+    playHat();
 }
 
 
@@ -87,21 +100,37 @@ function metronomeBlink() {
 
 function playKick() {
     if (kickPattern.includes(clockPosition)) {
-        myPlay(currentKick);
+        if (stepLightPattern.includes(clockPosition)) {
+            myPlay(currentKick);
+        } else {
+            myPlay(currentGhostKick);
+        }
     }
 }
 
 function playSnare() {
     if (snarePattern.includes(clockPosition)) {
-        myPlay(currentSnare);
+        if (stepLightPattern.includes(clockPosition)) {
+            myPlay(currentSnare);
+        } else {
+            myPlay(currentGhostSnare);
+        }
+    }
+}
+
+function playHat() {
+    if (hatPattern.includes(clockPosition)) {
+        myPlay(currentHat);
     }
 }
 
 function illuminateButtons() {
 
+    // checks every button to see if its in the pattern
     for (let i = 0; i <= sequenceLength; i++) {
         let currentSnareId = `s${i}`;
         let currentKickId = `k${i}`;
+        let currentHatId = `h${i}`;
 
         if (snarePattern.includes(i)) {
             document.getElementById(currentSnareId).style.background = 'var(--litCyan)';
@@ -112,7 +141,13 @@ function illuminateButtons() {
         if (kickPattern.includes(i)) {
             document.getElementById(currentKickId).style.background = 'var(--litCyan)';
         } else if (!kickPattern.includes(i)) {
-            document.getElementById(currentKickId).style.background = 'var(--dimCyan)'
+            document.getElementById(currentKickId).style.background = 'var(--dimCyan)';
+        }
+
+        if (hatPattern.includes(i)) {
+            document.getElementById(currentHatId).style.background = 'var(--litCyan)';
+        } else if (!hatPattern.includes(i)) {
+            document.getElementById(currentHatId).style.background = 'var(--dimGreen)';
         }
 
     }
@@ -174,6 +209,7 @@ function changeKick() {
 
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
+const hatSequencerButtons = document.querySelectorAll('.hatSeqButton');
 
 smallSequencerButtons.forEach(button => {
         button.addEventListener('click', (e)=>{
@@ -207,6 +243,18 @@ bigSequencerButtons.forEach(button => {
         }
 
     updatePattern(patternArray, stepId);
+    illuminateButtons();
+
+    });
+});
+
+// hat updater
+
+hatSequencerButtons.forEach(button => {
+    button.addEventListener('click', (e)=>{
+    console.log('hat button clicked')
+    let stepId = button.id.slice(1);
+    updatePattern(hatPattern, stepId);
     illuminateButtons();
 
     });
