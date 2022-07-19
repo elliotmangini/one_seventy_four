@@ -26,7 +26,20 @@ let hatArray = [
 ]
 
 let bassArray = [
-    ['./Big_Sister_Bass_DirtyWow_01.wav',
+    ['./Big_Sister_Bass_BeatingSine_E1.wav',
+    './Big_Sister_Bass_BeatingSine_F1.wav',
+    './Big_Sister_Bass_BeatingSine_Gb1.wav',
+    './Big_Sister_Bass_BeatingSine_G1.wav',
+    './Big_Sister_Bass_BeatingSine_Ab1.wav',
+    './Big_Sister_Bass_BeatingSine_A1.wav',
+    './Big_Sister_Bass_BeatingSine_Bb1.wav',
+    './Big_Sister_Bass_BeatingSine_B1.wav',
+    './Big_Sister_Bass_BeatingSine_C2.wav',
+    './Big_Sister_Bass_BeatingSine_Db2.wav',
+    './Big_Sister_Bass_BeatingSine_D2.wav',
+    './Big_Sister_Bass_BeatingSine_Eb2.wav',
+    './Big_Sister_Bass_BeatingSine_E2.wav',
+    './',
     ],
 
     [,
@@ -138,8 +151,15 @@ function playHat() {
 }
 
 function playBass() {
-    if (bassPattern.includes(clockPosition)) {
-        myPlay(currentBass);
+
+    for (let j = 0; j < 12; j++) {
+
+        let momentaryPitch = pitchArray[j];
+        let noteStepToCheck = `b${momentaryPitch}${clockPosition}`
+        
+        if (bassPattern.includes(noteStepToCheck)) {
+            myPlay(currentBass[pitchArray.indexOf(momentaryPitch)]);
+        }
     }
 }
 
@@ -178,14 +198,16 @@ function illuminateButtons() {
             for (let j = 0; j < 12; j++) {
 
                 let momentaryPitch = pitchArray[j];
-                let noteStepToCheck = `b${momentaryPitch}${i}`
+                let noteStepToCheck = `b${momentaryPitch}${i * 2}`
 
                 // console.log(noteStepToCheck);
+                let idToChange = convertBassEigthsToId(noteStepToCheck);
+                // console.log(idToChange);
     
                 if (bassPattern.includes(noteStepToCheck)) {
-                    document.getElementById(noteStepToCheck).style.background = 'var(--litRed)';
+                    document.getElementById(idToChange).style.background = 'var(--litRed)';
                 } else if (!bassPattern.includes(noteStepToCheck)) {
-                    document.getElementById(noteStepToCheck).style.background = 'var(--dimRed)';
+                    document.getElementById(idToChange).style.background = 'var(--dimRed)';
                 }
     
     
@@ -341,11 +363,29 @@ hatSequencerButtons.forEach(button => {
 
 // bass updater
 
+function convertBassIdToEigths (stepId) {
+    let noteInfo = stepId.slice(0, 2);
+    let stepNumber = parseInt(stepId.slice(2));
+    let convertedStepNumber = (stepNumber * 2);
+    let convertedId= `${noteInfo}${convertedStepNumber}`;
+    return convertedId;
+}
+
+function convertBassEigthsToId (patternItem) {
+    let noteInfo = patternItem.slice(0, 2);
+    let stepNumber = parseInt(patternItem.slice(2));
+    let convertedStepNumber = (stepNumber / 2);
+    // console.log(convertedStepNumber);
+    let convertedId= `${noteInfo}${convertedStepNumber}`;
+    return convertedId;
+
+}
+
 bassSequencerButtons.forEach(button => {
     button.addEventListener('click', (e)=>{
     console.log('bass button clicked')
     let stepId = button.id.slice(0);
-    updatePattern(bassPattern, stepId);
+    updatePattern(bassPattern, convertBassIdToEigths(stepId));
     illuminateButtons();
 
     });
