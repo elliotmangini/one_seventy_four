@@ -10,6 +10,7 @@
     --panel1: rgb(26, 10, 30);
     --panel2: rgb(47, 13, 13);
     --dimGreen: rgb(65, 104, 65);
+    --backgroundPink: #ffbced;
 }
 
 
@@ -40,6 +41,57 @@ body {
     transform: translate(-50%, -50%);
     background: linear-gradient(var(--panel1), var(--panel2));
 }
+
+#leftPanelButtons {
+  position: absolute;
+  width: 700px;
+  height: 440px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
+#playPause {
+  width: 40px;
+  height: 40px;
+  margin: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+  top: 10%;
+  left: 2%;
+}
+
+#snareBank {
+  width: 35px;
+  height: 35px;
+  margin: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(190, 91, 139);
+  top: 29%;
+  left: 2%;
+}
+
+#kickBank {
+  width: 35px;
+  height: 35px;
+  margin: 30px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(190, 91, 139);
+  top: 46.5%;
+  left: 2%;
+}
+
 
   #tvJpg {
     width: 130px;
@@ -154,44 +206,8 @@ body {
   left: 45%;
 }
 
-#playPause {
-  width: 40px;
-  height: 40px;
-  margin: 30px;
-  border-radius: 3px;
-  display: flex;
-  justify-content: flex-end;
-  background-color: white;
-  top: 31%;
-  left: 2%;
-}
-
 #sampler4 {
   background-color: rgb(37, 79, 37);
-}
-
-#snareBank {
-  width: 35px;
-  height: 35px;
-  margin: 30px;
-  border-radius: 3px;
-  display: flex;
-  justify-content: flex-end;
-  background-color: rgb(190, 91, 139);
-  top: 38%;
-  left: 3.5%;
-}
-
-#kickBank {
-  width: 35px;
-  height: 35px;
-  margin: 30px;
-  border-radius: 3px;
-  display: flex;
-  justify-content: flex-end;
-  background-color: rgb(190, 91, 139);
-  top: 48%;
-  left: 3.5%;
 }
 
 .hatSeqButton {

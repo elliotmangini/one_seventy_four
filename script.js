@@ -84,14 +84,14 @@ illuminateButtons();
 function play() {
     startIntervalFunctions = setInterval(tickingFunctions, milliseconds);
     startIntervalClock = setInterval(incrementClock, milliseconds);
-    console.log('Playback started.')
+    console.log('Playback was just started.')
 }
 
 function pause() {
     clearInterval(startIntervalFunctions);
     clearInterval(startIntervalClock);
     let clockPosition = 0;
-    console.log('Playback paused.')
+    console.log('Playback was just paused.')
 }
 
 // Main Time-Based Logic Functions.
@@ -321,7 +321,7 @@ const bassSequencerButtons = document.querySelectorAll('.bassSeqButton');
 smallSequencerButtons.forEach(button => {
         button.addEventListener('click', (e)=>{
             e.stopPropagation();
-            console.log('button clicked')
+            console.log('small sequencer button clicked')
         let stepId = button.id.slice(1);
         let patternArray = [];
 
@@ -339,7 +339,7 @@ smallSequencerButtons.forEach(button => {
 
 bigSequencerButtons.forEach(button => {
     button.addEventListener('click', (e)=>{
-    console.log('button clicked')
+    console.log('big sequencer button clicked')
     let stepId = button.id.slice(1);
     let patternArray = [];
 
@@ -393,7 +393,7 @@ function convertBassEigthsToId (patternItem) {
 
 bassSequencerButtons.forEach(button => {
     button.addEventListener('click', (e)=>{
-    console.log('bass button clicked')
+    console.log('bass sequencer button clicked')
     let stepId = button.id.slice(0);
     updatePattern(bassPattern, convertBassIdToEigths(stepId));
     illuminateButtons();
@@ -445,6 +445,7 @@ samplerElement4.addEventListener("click", e => {
     if (playState === true) {
         myPlay(hotSample4);
         playPause();
+        clockPosition = 0;
         console.log('REEEEWWIIINNNDDDD');
     }
 })
@@ -467,7 +468,6 @@ function playPause() {
 
 const playPauseElement = document.getElementById('playPause')
 playPauseElement.addEventListener("click", e => {
-    // console.log('checking playstate');
     playPause();
 })
 
