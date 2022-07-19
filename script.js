@@ -106,6 +106,11 @@ function pause() {
     console.log('Playback was just paused.')
 }
 
+function myPlay(currentSoundAsString){
+    var audio = new Audio(currentSoundAsString);
+    audio.play();
+}
+
 // Main Time-Based Logic Functions.
 
 function incrementClock() {
@@ -231,13 +236,6 @@ function illuminateButtons() {
         }
 
     }
-}
-
-// Utility Function (Allows JS to dynamically recall audio paths and play them.)
-
-function myPlay(currentSoundAsString){
-    var audio = new Audio(currentSoundAsString);
-    audio.play();
 }
 
 // Functions that update the "memory" arrays.
@@ -449,6 +447,7 @@ samplerElement3.addEventListener("click", e => {
 
 const samplerElement4 = document.getElementById('sampler4')
 samplerElement4.addEventListener("click", e => {
+    clockPosition = 0;
 
     if (playState === false) {
         myPlay(hotSample4);
@@ -457,7 +456,6 @@ samplerElement4.addEventListener("click", e => {
     if (playState === true) {
         myPlay(hotSample4);
         playPause();
-        clockPosition = 0;
         console.log('REEEEWWIIINNNDDDD');
     }
 })
@@ -466,7 +464,7 @@ samplerElement4.addEventListener("click", e => {
 
 function playPause() {
     if (playState === false) {
-        document.getElementById('playPause').style.background = 'var(--yellow)';
+        document.getElementById('playPause').style.background = 'var(--playOn)';
         play();
         playState = true;
     } else if (playState === true) {

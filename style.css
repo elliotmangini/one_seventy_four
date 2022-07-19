@@ -5,12 +5,13 @@
     --litRed: #cc1010;
     --dimCyan: rgb(60, 75, 84);
     --litCyan: #1bfbff;
-    --yellow: rgb(221, 245, 102);
+    --playOn: rgb(255, 208, 138);
     --white: white;
     --panel1: rgb(26, 10, 30);
     --panel2: rgb(47, 13, 13);
     --dimGreen: rgb(65, 104, 65);
     --backgroundPink: #ffbced;
+    --lcdGrey: gray;
 }
 
 
@@ -27,6 +28,24 @@ body {
     text-align: center;
     z-index: -1;
   }
+
+.retroScreen {
+  position: absolute;
+    width: 220px;
+    height: 60px;
+    top: 29.5%;
+    left: 62.5%;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: var(--lcdGrey);
+    z-index: 2;
+}
+
+
 
   .seqButtonPanel {
     position: absolute;
@@ -102,10 +121,11 @@ body {
 
   .metronomeLight {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    top: 10%;
-    left: 5%;
+    width: 30px;
+    height: 7px;
+    top: 12%;
+    left: 6.25%;
+    border-radius: 5px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
@@ -193,7 +213,7 @@ body {
 .hotSampler {
   width: 50px;
   height: 30px;
-  margin: 30px;
+  margin: 5px;
   border-radius: 3px;
   display: flex;
   justify-content: flex-end;
@@ -203,7 +223,7 @@ body {
 
 #hotSampler {
   top: 30%;
-  left: 45%;
+  left: 29%;
 }
 
 #sampler4 {
