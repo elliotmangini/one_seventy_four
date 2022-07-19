@@ -264,73 +264,144 @@ body {
   width: 6px;
 }
 
-#bassRow12 {
+#bassRow14 {
   top: 100%;
   left: 50%;
 }
 
-#bassRow11 {
+#bassRow13 {
   top: 105%;
   left: 50%;
 }
 
-#bassRow10 {
+#bassRow12 {
   top: 110%;
   left: 50%;
 }
 
-#bassRow9 {
+#bassRow11 {
   top: 115%;
   left: 50%;
 }
 
-#bassRow8 {
+#bassRow10 {
   top: 120%;
   left: 50%;
 }
 
-#bassRow7 {
+#bassRow9 {
   top: 125%;
   left: 50%;
 }
 
-#bassRow6 {
+#bassRow8 {
   top: 130%;
   left: 50%;
 }
 
-/* for some reaon these rows are getting a "boost" of 10% to their top value */
 #bassRow7 {
-  top: 125%;
-  left: 50%;
-}
-
-#bassRow6 {
-  top: 130%;
-  left: 50%;
-}
-
-#bassRow5 {
   top: 135%;
   left: 50%;
 }
 
-#bassRow4 {
+#bassRow6 {
   top: 140%;
   left: 50%;
 }
 
-#bassRow3 {
+#bassRow5 {
   top: 145%;
   left: 50%;
 }
 
-#bassRow2 {
+#bassRow4 {
   top: 150%;
   left: 50%;
 }
 
-#bassRow1 {
+#bassRow3 {
   top: 155%;
+  left: 50%;
+}
+
+#bassRow2 {
+  top: 160%;
+  left: 50%;
+}
+
+#bassRow1 {
+  top: 165%;
+  left: 50%;
+}
+
+/* second chunk of sequencer */
+
+#bassRow28 {
+  top: 180%;
+  left: 50%;
+}
+
+#bassRow27 {
+  top: 185%;
+  left: 50%;
+}
+
+#bassRow26 {
+  top: 190%;
+  left: 50%;
+}
+
+#bassRow25 {
+  top: 195%;
+  left: 50%;
+}
+
+#bassRow24 {
+  top: 200%;
+  left: 50%;
+}
+
+#bassRow23 {
+  top: 205%;
+  left: 50%;
+}
+
+#bassRow22 {
+  top: 210%;
+  left: 50%;
+}
+
+#bassRow21 {
+  top: 215%;
+  left: 50%;
+}
+
+#bassRow20 {
+  top: 220%;
+  left: 50%;
+}
+
+#bassRow19 {
+  top: 225%;
+  left: 50%;
+}
+
+#bassRow18 {
+  top: 230%;
+  left: 50%;
+}
+
+#bassRow17 {
+  top: 235%;
+  left: 50%;
+}
+
+#bassRow16 {
+  top: 240%;
+  left: 50%;
+}
+
+#bassRow15 {
+  top: 245%;
   left: 50%;
 }

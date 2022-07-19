@@ -4,10 +4,10 @@ let playState = false;
 
 let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
 let kickPattern = [0, 16, 32, 48, 58];
-let hatPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
+let hatPattern = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 60]
 let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
 let bassPattern = [];
-let pitchArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+let pitchArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'];
 
 let kickArray = [
     './Big_Sister_Kick_DarkTechno_02.wav',
@@ -24,6 +24,9 @@ let snareArray = [
 let hatArray = [
     './HiHat 9.wav',
 ]
+
+
+// each bass sound has 14 pitches, allowing for 1 octave + 1 semitone
 
 let bassArray = [
     ['./Big_Sister_Bass_BeatingSine_E1.wav',
@@ -152,7 +155,7 @@ function playHat() {
 
 function playBass() {
 
-    for (let j = 0; j < 12; j++) {
+    for (let j = 0; j < 14; j++) {
 
         let momentaryPitch = pitchArray[j];
         let noteStepToCheck = `b${momentaryPitch}${clockPosition}`
@@ -193,9 +196,9 @@ function illuminateButtons() {
 
         let currentBassStepId = bassPattern.slice(2);
 
-        if (i < 16) {
+        if (i < 32) {
 
-            for (let j = 0; j < 12; j++) {
+            for (let j = 0; j < 14; j++) {
 
                 let momentaryPitch = pitchArray[j];
                 let noteStepToCheck = `b${momentaryPitch}${i * 2}`
@@ -229,9 +232,11 @@ function myPlay(currentSoundAsString){
 
 
 function updatePattern(patternArray, stepId) {
+    // console.log(patternArray)
 
     // check if this is the bassArray
     if (patternArray === bassPattern) {
+        // console.log('i think im updating the bass pattern')
 
         if (patternArray.includes(stepId)) {
             // console.log('i found an array item to delete');
@@ -247,7 +252,8 @@ function updatePattern(patternArray, stepId) {
     // console.log('pattern before update: ' + patternArray);
     // console.log('stepId is' + stepId);
     // if the stepNumber is in the pattern, do something
-    else if (patternArray === bassPattern) {
+    else {
+        // console.log('i think im updating the kick or pattern')
 
         if (patternArray.includes(parseInt(stepId))) {
             // console.log('i found an array item to delete');
@@ -305,7 +311,7 @@ function changeKick() {
 // }
 
 
-// Sequencer Click Events
+// Sequencer Click Events - EventListener related code
 
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
@@ -363,6 +369,8 @@ hatSequencerButtons.forEach(button => {
 
 // bass updater
 
+// timing utilities defined here
+
 function convertBassIdToEigths (stepId) {
     let noteInfo = stepId.slice(0, 2);
     let stepNumber = parseInt(stepId.slice(2));
@@ -380,6 +388,8 @@ function convertBassEigthsToId (patternItem) {
     return convertedId;
 
 }
+
+// bass sequencer button events
 
 bassSequencerButtons.forEach(button => {
     button.addEventListener('click', (e)=>{
@@ -452,6 +462,8 @@ function playPause() {
         playState = false;
     }
 }
+
+// this makes the playing and pausing button reactive
 
 const playPauseElement = document.getElementById('playPause')
 playPauseElement.addEventListener("click", e => {
