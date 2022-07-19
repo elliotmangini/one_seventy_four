@@ -6,6 +6,8 @@ let snarePattern = [4, 12, 20, 28, 36, 44, 52, 60];
 let kickPattern = [0, 16, 32, 48, 58];
 let hatPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
 let stepLightPattern = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60]
+let bassPattern = [];
+let pitchArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
 
 let kickArray = [
     './Big_Sister_Kick_DarkTechno_02.wav',
@@ -23,6 +25,14 @@ let hatArray = [
     './HiHat 9.wav',
 ]
 
+let bassArray = [
+    ['./Big_Sister_Bass_DirtyWow_01.wav',
+    ],
+
+    [,
+    ]
+];
+
 let hotSample1 = './Wheel_Up_Signal.wav'
 let hotSample2 = './lickshot_beep.wav'
 let hotSample3 = './lickshot_laser.wav'
@@ -31,9 +41,11 @@ let hotSample4 = './lickshot_rewind.wav'
 let snareIndex = 0;
 let kickIndex = 0;
 let hatIndex = 0;
+let bassIndex = 0;
 let currentKick = kickArray[kickIndex];
 let currentSnare = snareArray[snareIndex];
 let currentHat = hatArray[hatIndex];
+let currentBass = bassArray[bassIndex];
 
 let currentGhostKick = './Big_Sister_Kick_2ClickGhost_01.wav';
 let currentGhostSnare = './Big_Sister_GSnare_GTech.wav';
@@ -49,6 +61,8 @@ let bpm = 174;
 let milliseconds = (60000 / bpm / 4);
 const sequenceLength = 63;
 
+illuminateButtons();
+
 // Master Control Functions
 
 function play() {
@@ -63,8 +77,6 @@ function pause() {
     let clockPosition = 0;
     console.log('Playback paused.')
 }
-
-illuminateButtons();
 
 // Main Time-Based Logic Functions.
 
@@ -84,6 +96,7 @@ function tickingFunctions() {
     playKick();
     playSnare();
     playHat();
+    playBass();
 }
 
 
@@ -124,6 +137,12 @@ function playHat() {
     }
 }
 
+function playBass() {
+    if (bassPattern.includes(clockPosition)) {
+        myPlay(currentBass);
+    }
+}
+
 function illuminateButtons() {
 
     // checks every button to see if its in the pattern
@@ -150,6 +169,30 @@ function illuminateButtons() {
             document.getElementById(currentHatId).style.background = 'var(--dimGreen)';
         }
 
+        // check the bass pattern
+
+        let currentBassStepId = bassPattern.slice(2);
+
+        if (i < 16) {
+
+            for (let j = 0; j < 12; j++) {
+
+                let momentaryPitch = pitchArray[j];
+                let noteStepToCheck = `b${momentaryPitch}${i}`
+
+                // console.log(noteStepToCheck);
+    
+                if (bassPattern.includes(noteStepToCheck)) {
+                    document.getElementById(noteStepToCheck).style.background = 'var(--litRed)';
+                } else if (!bassPattern.includes(noteStepToCheck)) {
+                    document.getElementById(noteStepToCheck).style.background = 'var(--dimRed)';
+                }
+    
+    
+            }
+
+        }
+
     }
 }
 
@@ -164,19 +207,38 @@ function myPlay(currentSoundAsString){
 
 
 function updatePattern(patternArray, stepId) {
+
+    // check if this is the bassArray
+    if (patternArray === bassPattern) {
+
+        if (patternArray.includes(stepId)) {
+            // console.log('i found an array item to delete');
+            // delete the step value from the array
+            let momentaryIndex = patternArray.indexOf(stepId);
+            patternArray.splice(momentaryIndex, 1);
+        } else {
+            // add the step to the array
+            patternArray.push(stepId);
+        }
+
+    }
     // console.log('pattern before update: ' + patternArray);
     // console.log('stepId is' + stepId);
     // if the stepNumber is in the pattern, do something
-    if (patternArray.includes(parseInt(stepId))) {
-        // console.log('i found an array item to delete');
-        // delete the step value from the array
-        let momentaryIndex = patternArray.indexOf(parseInt(stepId));
-        patternArray.splice(momentaryIndex, 1);
-    } else {
-        // add the step to the array
-        patternArray.push(parseInt(stepId));
+    else if (patternArray === bassPattern) {
+
+        if (patternArray.includes(parseInt(stepId))) {
+            // console.log('i found an array item to delete');
+            // delete the step value from the array
+            let momentaryIndex = patternArray.indexOf(parseInt(stepId));
+            patternArray.splice(momentaryIndex, 1);
+        } else {
+            // add the step to the array
+            patternArray.push(parseInt(stepId));
+        }
+        // console.log('pattern after update: ' + patternArray);
+
     }
-    // console.log('pattern after update: ' + patternArray);
 }
 
 function changeSnare() {
@@ -205,11 +267,28 @@ function changeKick() {
     }
 }
 
-// Main Drum Sequencer Click Events
+// COMING SOON!
+//
+// function changeBass() {
+//     let momentaryKickIndex = kickArray.indexOf(currentKick);
+//     let newKickIndex = (momentaryKickIndex + 1);
+//     console.log(`changing kick to #${newKickIndex}`);
+
+//     if (kickArray.indexOf(currentKick) < kickArray.length - 1) {
+//         currentKick = kickArray[newKickIndex];
+//     } else {
+//         currentKick = kickArray[0];
+//         // console.log('kick rotation restarting');
+//     }
+// }
+
+
+// Sequencer Click Events
 
 const bigSequencerButtons = document.querySelectorAll('.seqButton');
 const smallSequencerButtons = document.querySelectorAll('.sequenceSixteenths');
 const hatSequencerButtons = document.querySelectorAll('.hatSeqButton');
+const bassSequencerButtons = document.querySelectorAll('.bassSeqButton');
 
 smallSequencerButtons.forEach(button => {
         button.addEventListener('click', (e)=>{
@@ -260,8 +339,20 @@ hatSequencerButtons.forEach(button => {
     });
 });
 
+// bass updater
 
-// Changes colors of step sequencer lights.
+bassSequencerButtons.forEach(button => {
+    button.addEventListener('click', (e)=>{
+    console.log('bass button clicked')
+    let stepId = button.id.slice(0);
+    updatePattern(bassPattern, stepId);
+    illuminateButtons();
+
+    });
+});
+
+
+// Handles blinking of step metronome.
 
 function stepLightBlink() {
     if (stepLightPattern.includes(clockPosition)) {
@@ -337,7 +428,7 @@ document.addEventListener('keyup', event => {
 
   
   
-// soundbank selectors
+// make sound-bank buttons call the function to rotate through samples
 
 const snareBankButton = document.getElementById('snareBank')
   snareBankButton.addEventListener("click", e => {

@@ -194,12 +194,6 @@ body {
   left: 3.5%;
 }
 
-#panel2 {
-  top: 115%;
-  color: white;
-  text-align: center;
-}
-
 .hatSeqButton {
   width: 12px;
   height: 12px;
@@ -244,4 +238,99 @@ body {
   top: 77%;
   left: 50.75%;
   display: none;
+}
+
+/* Bass Sequencer Module */
+
+#panel2 {
+  top: 183%;
+  color: white;
+  text-align: center;
+  height: 1500px;
+}
+
+.bassSeqButton {
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  border-radius: 1px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--dimRed);
+  /* top: 10%; */
+}
+
+.bassSeqSpacer {
+  width: 6px;
+}
+
+#bassRow12 {
+  top: 100%;
+  left: 50%;
+}
+
+#bassRow11 {
+  top: 105%;
+  left: 50%;
+}
+
+#bassRow10 {
+  top: 110%;
+  left: 50%;
+}
+
+#bassRow9 {
+  top: 115%;
+  left: 50%;
+}
+
+#bassRow8 {
+  top: 120%;
+  left: 50%;
+}
+
+#bassRow7 {
+  top: 125%;
+  left: 50%;
+}
+
+#bassRow6 {
+  top: 130%;
+  left: 50%;
+}
+
+/* for some reaon these rows are getting a "boost" of 10% to their top value */
+#bassRow7 {
+  top: 125%;
+  left: 50%;
+}
+
+#bassRow6 {
+  top: 130%;
+  left: 50%;
+}
+
+#bassRow5 {
+  top: 135%;
+  left: 50%;
+}
+
+#bassRow4 {
+  top: 140%;
+  left: 50%;
+}
+
+#bassRow3 {
+  top: 145%;
+  left: 50%;
+}
+
+#bassRow2 {
+  top: 150%;
+  left: 50%;
+}
+
+#bassRow1 {
+  top: 155%;
+  left: 50%;
 }
